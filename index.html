@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeevallucas Gautama - Data Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Three.js for 3D background animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Chart.js for interactive charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Custom styles for the page */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Styling for the 3D canvas background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(23, 23, 23, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+        }
+
+        /* Custom styling for bullet points to ensure proper alignment */
+        .custom-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .custom-list li::before {
+            content: '✓';
+            color: #38bdf8;
+            /* sky-400 */
+            font-weight: 700;
+            margin-right: 0.75rem;
+            margin-top: 0.125rem;
+            /* Adjust vertical alignment */
+            flex-shrink: 0;
+        }
+
+        /* Scroll-triggered animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.6, 0.2, 0.4, 1), transform 0.8s cubic-bezier(0.6, 0.2, 0.4, 1);
+            transition-delay: 0.2s;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Gradient text effect */
+        .gradient-text {
+            background: linear-gradient(to right, #38bdf8, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- 3D Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Main Container -->
+    <div class="relative z-10">
+
+        <!-- Header/Hero Section -->
+        <header class="min-h-screen flex flex-col justify-center items-center text-center p-4">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-slate-100 reveal">
+                    Deconstructing <span class="gradient-text">Data</span>, Engineering <span
+                        class="gradient-text">Insight</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto reveal">
+                    I'm Jeevallucas Gautama, a data professional passionate about transforming complex datasets into
+                    actionable strategies and innovative solutions.
+                </p>
+                <a href="#about"
+                    class="mt-10 inline-block bg-sky-500 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-sky-600 transition-all duration-300 transform hover:scale-105 reveal">
+                    Explore My Cortex
+                </a>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 md:px-8">
+
+            <!-- About Me Section -->
+            <section id="about" class="py-24 md:py-36 relative">
+                <!-- Decorative Gradient Glow -->
+                <div class="absolute inset-0 pointer-events-none z-0">
+                    <div
+                        class="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-br from-sky-400/30 via-purple-400/20 to-transparent rounded-full blur-3xl opacity-70">
+                    </div>
+                </div>
+                <div class="relative grid grid-cols-1 md:grid-cols-3 gap-12 items-center z-10">
+                    <!-- Profile Image with Animated Border -->
+                    <div class="md:col-span-1 flex justify-center reveal">
+                        <div
+                            class="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl">
+                            <img src="Foto Pribadi.JPG" alt="Foto Jeevallucas Gautama"
+                                class="w-full h-full object-cover grayscale-0 hover:grayscale-0 transition duration-500">
+                            <div
+                                class="absolute inset-0 rounded-full ring-4 ring-sky-400/40 animate-spin-slow pointer-events-none">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- About Me Content -->
+                    <div class="md:col-span-2 reveal">
+                        <h2
+                            class="text-5xl md:text-6xl font-extrabold mb-6 gradient-text drop-shadow-lg tracking-tight flex items-center gap-4">
+                            <svg class="w-10 h-10 text-sky-400 animate-bounce" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 12V4" />
+                            </svg>
+                            About Me
+                        </h2>
+                        <p class="text-xl md:text-2xl font-semibold text-sky-400 mb-4 animate-fade-in-up">
+                            <span class="gradient-text">Turning Data into Discovery, and Discovery into Impact.</span>
+                        </p>
+                        <p class="text-slate-300 text-lg md:text-xl mb-4 leading-relaxed animate-fade-in-up delay-100">
+                            Hi, I’m <span class="font-bold text-sky-300">Jeevallucas Gautama</span> — a data
+                            storyteller, puzzle-solver, and relentless explorer of the unknown. My journey began not
+                            with code, but with curiosity: Why do people behave the way they do? What secrets hide in
+                            the chaos of numbers? That spark led me to the world of data, where every dataset is a new
+                            adventure.
+                        </p>
+                        <ul class="list-none space-y-3 mb-4 animate-fade-in-up delay-200">
+                            <li class="flex items-start gap-3">
+                                <span class="text-2xl text-green-400">🚀</span>
+                                <span class="text-slate-400 text-lg">I <span class="font-bold text-sky-400">engineer
+                                        pipelines</span> that transform raw data into gold, ensuring every insight is
+                                    built on a rock-solid foundation.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-2xl text-purple-400">🧠</span>
+                                <span class="text-slate-400 text-lg">I <span class="font-bold text-purple-400">craft
+                                        predictive models</span> that don’t just crunch numbers—they anticipate the
+                                    future and empower bold decisions.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-2xl text-yellow-400">🎨</span>
+                                <span class="text-slate-400 text-lg">I <span class="font-bold text-yellow-400">design
+                                        dashboards</span> that turn complexity into clarity, making data not just
+                                    accessible, but unforgettable.</span>
+                            </li>
+                        </ul>
+                        <p class="text-slate-400 text-lg md:text-xl animate-fade-in-up delay-300">
+                            If you’re looking for someone who sees <span class="font-bold text-sky-400">stories in
+                                spreadsheets</span> and <span class="font-bold text-purple-400">opportunity in every
+                                outlier</span>, let’s connect. Together, we’ll turn your data into your greatest asset.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <style>
+                @keyframes fade-in-up {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+
+                    100% {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .animate-fade-in-up {
+                    animation: fade-in-up 1s cubic-bezier(0.6, 0.2, 0.4, 1) both;
+                }
+
+                .delay-100 {
+                    animation-delay: 0.1s;
+                }
+
+                .delay-200 {
+                    animation-delay: 0.2s;
+                }
+
+                .delay-300 {
+                    animation-delay: 0.3s;
+                }
+
+                @keyframes spin-slow {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+
+                .animate-spin-slow {
+                    animation: spin-slow 10s linear infinite;
+                }
+            </style>
+
+            <!-- Skills Section -->
+            <section id="skills" class="py-20 md:py-32 relative">
+                <div class="absolute inset-0 pointer-events-none z-0"></div>
+                <div
+                    class="absolute left-1/2 top-0 -translate-x-1/2 w-[400px] h-[400px] bg-gradient-to-br from-sky-800/20 via-slate-800/10 to-transparent rounded-full blur-2xl opacity-40">
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-14 text-center text-sky-300 tracking-tight reveal">
+                    <span class="inline-flex items-center gap-3">
+                        <svg class="w-9 h-9 text-sky-400" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 12V4" />
+                        </svg>
+                        <span class="uppercase tracking-widest">Technical Toolkit</span>
+                    </span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 relative z-10">
+                    <!-- Skill Card 1 -->
+                    <div
+                        class="glass-card p-7 text-center reveal hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 border border-sky-800/30">
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-sky-900/40">
+                                <svg class="w-7 h-7 text-sky-300" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-200 mb-2">Data Science & ML</h3>
+                        <ul class="list-disc list-inside space-y-1 text-slate-300 text-base text-left">
+                            <li>Python (Pandas, NumPy)</li>
+                            <li>TensorFlow</li>
+                            <li>PyTorch</li>
+                            <li>R</li>
+                        </ul>
+                        <div class="mt-4 flex flex-wrap justify-center gap-2">
+                            <span
+                                class="bg-sky-800/60 text-sky-200 text-xs font-semibold px-3 py-1 rounded-full">Machine
+                                Learning</span>
+                            <span
+                                class="bg-slate-800/60 text-slate-200 text-xs font-semibold px-3 py-1 rounded-full">Deep
+                                Learning</span>
+                        </div>
+                    </div>
+                    <!-- Skill Card 2 -->
+                    <div
+                        class="glass-card p-7 text-center reveal hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 border border-sky-800/30">
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-sky-900/40">
+                                <svg class="w-7 h-7 text-sky-300" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h4l3 8 4-16 3 8h4" />
+                                </svg>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-200 mb-2">Data Engineering</h3>
+                        <ul class="list-disc list-inside space-y-1 text-slate-300 text-base text-left">
+                            <li>SQL</li>
+                            <li>Apache Spark</li>
+                            <li>Airflow</li>
+                            <li>dbt</li>
+                            <li>Kafka</li>
+                            <li>Docker</li>
+                        </ul>
+                        <div class="mt-4 flex flex-wrap justify-center gap-2">
+                            <span
+                                class="bg-sky-800/60 text-sky-200 text-xs font-semibold px-3 py-1 rounded-full">ETL</span>
+                            <span
+                                class="bg-slate-800/60 text-slate-200 text-xs font-semibold px-3 py-1 rounded-full">Data
+                                Pipeline</span>
+                        </div>
+                    </div>
+                    <!-- Skill Card 3 -->
+                    <div
+                        class="glass-card p-7 text-center reveal hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 border border-sky-800/30">
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-sky-900/40">
+                                <svg class="w-7 h-7 text-sky-300" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <rect x="3" y="3" width="7" height="7" rx="2" />
+                                    <rect x="14" y="3" width="7" height="7" rx="2" />
+                                    <rect x="14" y="14" width="7" height="7" rx="2" />
+                                    <rect x="3" y="14" width="7" height="7" rx="2" />
+                                </svg>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-200 mb-2">Databases</h3>
+                        <ul class="list-disc list-inside space-y-1 text-slate-300 text-base text-left">
+                            <li>PostgreSQL</li>
+                            <li>MySQL</li>
+                            <li>MongoDB</li>
+                            <li>Redshift</li>
+                            <li>BigQuery</li>
+                        </ul>
+                        <div class="mt-4 flex flex-wrap justify-center gap-2">
+                            <span
+                                class="bg-sky-800/60 text-sky-200 text-xs font-semibold px-3 py-1 rounded-full">SQL/NoSQL</span>
+                            <span
+                                class="bg-slate-800/60 text-slate-200 text-xs font-semibold px-3 py-1 rounded-full">Cloud
+                                DB</span>
+                        </div>
+                    </div>
+                    <!-- Skill Card 4 -->
+                    <div
+                        class="glass-card p-7 text-center reveal hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 border border-sky-800/30">
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-sky-900/40">
+                                <svg class="w-7 h-7 text-sky-300" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2a4 4 0 0 1 4-4h4" />
+                                    <circle cx="9" cy="7" r="4" />
+                                </svg>
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-sky-200 mb-2">Business Intelligence</h3>
+                        <ul class="list-disc list-inside space-y-1 text-slate-300 text-base text-left">
+                            <li>Tableau</li>
+                            <li>Power BI</li>
+                            <li>Looker</li>
+                            <li>Metabase</li>
+                        </ul>
+                        <div class="mt-4 flex flex-wrap justify-center gap-2">
+                            <span
+                                class="bg-sky-800/60 text-sky-200 text-xs font-semibold px-3 py-1 rounded-full">Dashboarding</span>
+                            <span
+                                class="bg-slate-800/60 text-slate-200 text-xs font-semibold px-3 py-1 rounded-full">Visualization</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-20 md:py-32">
+                <h2 class="text-4xl md:text-6xl font-extrabold mb-16 text-center gradient-text drop-shadow-2xl tracking-tight reveal flex flex-col items-center gap-4">
+                    <span class="inline-flex items-center gap-3">
+                        <svg class="w-12 h-12 text-sky-400 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 12V4" />
+                        </svg>
+                        <span class="uppercase tracking-widest">Case Studies</span>
+                    </span>
+                    <span class="block text-2xl md:text-3xl font-bold text-purple-300 animate-pulse">
+                        Data in Action 🚀
+                    </span>
+                </h2>
+                <p class="text-center text-slate-400 mb-10 max-w-2xl mx-auto reveal">
+                    <span class="font-semibold text-sky-400">Tip:</span> Each card can be clicked to visit the
+                    main project/demo. For detailed reports or publications, use the <span
+                        class="font-semibold text-green-300">"Click here to directly view..."</span> button inside each
+                    card.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Project Card 1 -->
+                    <a href="https://www.linkedin.com/posts/jeevallucas-gautama_a-transformative-journey-from-insights-to-activity-7269906256750927873-HIQ8?utm_source=share&utm_medium=member_desktop&rcm=ACoAADvGtoUBvZz_Jl4-c_OzUl9SabVYPArjDZo"
+                        class="block glass-card overflow-hidden group reveal transform transition-transform duration-300 ease-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl">
+                        <!-- Image -->
+                        <div class="w-full h-48 bg-slate-700 overflow-hidden">
+                            <img src="a.png" alt="E-Commerce Analysis"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-100 mb-2">Pennyu's E-Commerce Analysis</h3>
+                            <p class="text-slate-400 mb-4">
+                                Analyzed 14,000+ rows of Pennyu’s Shopee data to uncover customer behavior and ad
+                                effectiveness,
+                                developed two advanced segmentation models, migrated dashboards to Power BI with
+                                multi-source
+                                integration, automated eight new datasets, proposed nine strategic recommendations for
+                                2025,
+                                and reduced data processing time by 30%.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <p class="text-slate-400 mb-4 font-bold hover:text-green-200 transition">
+                                    🔗 Click the card to see how my story unfolds.
+                                </p>
+                                <button onclick="openPdfModal1(event)"
+                                    class="inline-block bg-green-900/70 text-green-300 text-xs font-bold px-3 py-1 rounded-full hover:underline hover:text-green-200 transition">
+                                    🔗 Click here to directly view my Project Report
+                                </button>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">Power
+                                    BI</span>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">PostgreSQL</span>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">Excel</span>
+                            </div>
+                            <p class="text-red-400 text-sm">This analysis uses dummy data and does not reflect actual
+                                company data.</p>
+                        </div>
+                    </a>
+
+                    <!-- Project Card 2 -->
+                    <a href="https://journal.ipm2kpe.or.id/index.php/INTECOM/article/view/14477"
+                        class="block glass-card overflow-hidden group reveal transform transition-transform duration-300 ease-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl">
+                        <!-- Image -->
+                        <div class="w-full h-48 bg-slate-700 overflow-hidden">
+                            <img src="2.png" alt="Sentiment Analysis"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-100 mb-2">Sentiment Analysis</h3>
+                            <p class="text-slate-400 mb-4">
+                                Conducted quantitative sentiment analysis on 2,563 tweets mentioning @danawallet
+                                (Jul–Nov 2024), fine‑tuning IndoBERT to 94% precision, 93% recall, and 92% F1-score;
+                                identified “promo” and “cashback” as top positive cues and “error” and “slow” as primary
+                                negative drivers. This work got published in the INTECOMS Journal, showcasing the
+                                effectiveness of NLP in understanding user sentiment.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <p class="text-slate-400 mb-4 font-bold hover:text-green-200 transition">
+                                    🔗 Click the card to see my published article on the journal.
+                                </p>
+                                <button onclick="openPdfModal(event)"
+                                    class="inline-block bg-green-900/70 text-green-300 text-xs font-bold px-3 py-1 rounded-full hover:underline hover:text-green-200 transition">
+                                    🔗 Click here to directly view my Published Article
+                                </button>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">Machine
+                                    Learning</span>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">Natural
+                                    Language Processing</span>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">IndoBERT</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- PDF Modal Overlay for Project 1 -->
+                    <div id="pdfModal1" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black bg-opacity-70" onclick="closePdfModal1()"></div>
+                        <div
+                            class="relative bg-slate-900 rounded-xl shadow-2xl max-w-3xl w-full mx-4 flex flex-col items-end">
+                            <button onclick="closePdfModal1()"
+                                class="m-2 text-slate-400 hover:text-red-400 text-2xl font-bold z-10">&times;</button>
+                            <iframe id="pdfFrame1" src="Pennyu E-Commerce Analysis Report.pdf#page=1"
+                                class="w-full h-[80vh] rounded-b-lg border-0" frameborder="0"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- PDF Modal Overlay for Project 2 -->
+                    <div id="pdfModal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black bg-opacity-70" onclick="closePdfModal()"></div>
+                        <div
+                            class="relative bg-slate-900 rounded-xl shadow-2xl max-w-3xl w-full mx-4 flex flex-col items-end">
+                            <button onclick="closePdfModal()"
+                                class="m-2 text-slate-400 hover:text-red-400 text-2xl font-bold z-10">&times;</button>
+                            <iframe id="pdfFrame" src="Sentiment Analysis of DANA using IndoBERT.pdf#page=1"
+                                class="w-full h-[80vh] rounded-b-lg border-0" frameborder="0"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- PDF Modal Overlay for Project 3 -->
+                    <div id="pdfModal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black bg-opacity-70" onclick="closePdfModal()"></div>
+                        <div
+                            class="relative bg-slate-900 rounded-xl shadow-2xl max-w-3xl w-full mx-4 flex flex-col items-end">
+                            <button onclick="closePdfModal()"
+                                class="m-2 text-slate-400 hover:text-red-400 text-2xl font-bold z-10">&times;</button>
+                            <iframe id="pdfFrame" src="Climate Risk Analysis.pdf#page=1"
+                                class="w-full h-[80vh] rounded-b-lg border-0" frameborder="0"></iframe>
+                        </div>
+                    </div>
+
+                    <script>
+                        // PDF Modal logic for Project 1
+                        function openPdfModal1(e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            document.getElementById('pdfModal1').classList.remove('hidden');
+                            document.body.classList.add('overflow-hidden');
+                            document.getElementById('pdfFrame1').src = "Pennyu E-Commerce Analysis Report.pdf#page=1";
+                        }
+
+                        function closePdfModal1() {
+                            document.getElementById('pdfModal1').classList.add('hidden');
+                            document.body.classList.remove('overflow-hidden');
+                        }
+
+                        // PDF Modal logic for Project 2
+                        function openPdfModal(e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            document.getElementById('pdfModal').classList.remove('hidden');
+                            document.body.classList.add('overflow-hidden');
+                            document.getElementById('pdfFrame').src = "Sentiment Analysis of DANA using IndoBERT.pdf#page=1";
+                        }
+
+                        function closePdfModal() {
+                            document.getElementById('pdfModal').classList.add('hidden');
+                            document.body.classList.remove('overflow-hidden');
+                        }
+
+                        // PDF Modal logic for Project 3
+                        function openPdfModal(e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            document.getElementById('pdfModal').classList.remove('hidden');
+                            document.body.classList.add('overflow-hidden');
+                            document.getElementById('pdfFrame').src = "Climate Risk Analysis.pdf#page=1";
+                        }
+
+                        function closePdfModal() {
+                            document.getElementById('pdfModal').classList.add('hidden');
+                            document.body.classList.remove('overflow-hidden');
+                        }
+                    </script>
+
+                    <!-- Project Card 3 -->
+                    <a href="https://lookerstudio.google.com/reporting/bb200b66-d1ce-4d83-bf9c-4f5155e49900"
+                        class="block glass-card overflow-hidden group reveal transform transition-transform duration-300 ease-out hover:-translate-y-2 hover:scale-105 hover:shadow-2xl">
+                        <!-- Image -->
+                        <div class="w-full h-48 bg-slate-700 overflow-hidden">
+                            <img src="3.png" alt="A/B Testing Framework"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-100 mb-2">Climate Risk Analysis</h3>
+                            <p class="text-slate-400 mb-4">
+                                The Climate Risk Dashboard displays interactive charts of global natural disasters and
+                                their economic impact from 1970 to 2018, with filters for event type and year. It
+                                highlights the steep rise in extreme weather and flood damages—exceeding US$1.3
+                                trillion—while predictive models forecast escalating disaster frequencies and costs.
+                                This tool equips stakeholders with clear, data-driven insights for future planning.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <p class="text-slate-400 mb-4 font-bold hover:text-green-200 transition">
+                                    🔗 Click the card to interact with the dashboard.
+                                </p>
+                                <button onclick="openPdfModal(event)"
+                                    class="inline-block bg-green-900/70 text-green-300 text-xs font-bold px-3 py-1 rounded-full hover:underline hover:text-green-200 transition">
+                                    🔗 Click here to directly view my Full Analysis
+                                </button>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">Looker
+                                    Studio</span>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">PostgreSQL</span>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">Statistics</span>
+                                <span
+                                    class="bg-sky-900/50 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- Interactive Sandbox Section -->
+            <section id="sandbox" class="py-20 md:py-32">
+                <h2 class="text-5xl md:text-6xl font-extrabold mb-6 text-center gradient-text drop-shadow-2xl tracking-tight reveal flex flex-col items-center gap-4">
+                    <span class="inline-flex items-center gap-3">
+                        <svg class="w-12 h-12 text-sky-400 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h8M12 8v8" />
+                        </svg>
+                        <span class="uppercase tracking-widest">Interactive Sandbox</span>
+                    </span>
+                    <span class="block text-2xl md:text-3xl font-bold text-purple-300 animate-pulse">
+                        Try Out Live Data Visualizations!
+                    </span>
+                </h2>
+                <p class="text-center text-slate-400 mb-10 max-w-2xl mx-auto reveal">
+                    <span class="font-semibold text-sky-400">Playground:</span> This is a live demonstration of my
+                    data visualization skills. Interact with the charts below to see simulated project impact data.
+                </p>
+                <div class="glass-card p-6 md:p-8 reveal">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2">
+                            <h3 class="font-bold text-slate-100 mb-4">Quarterly User Engagement Growth</h3>
+                            <canvas id="engagementChart"></canvas>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <button onclick="updateEngagementChart([1000, 1800, 2500, 4000, 3500, 5000])"
+                                    class="bg-sky-700 text-white px-4 py-2 rounded-full text-sm hover:bg-sky-500 transition">Show 2023 Data</button>
+                                <button onclick="updateEngagementChart([1200, 1900, 3000, 5000, 4200, 6500])"
+                                    class="bg-purple-700 text-white px-4 py-2 rounded-full text-sm hover:bg-purple-500 transition">Show 2024 Data</button>
+                                <button onclick="randomizeEngagementChart()"
+                                    class="bg-green-700 text-white px-4 py-2 rounded-full text-sm hover:bg-green-500 transition">Randomize</button>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-100 mb-4">Feature Adoption Rate</h3>
+                            <canvas id="adoptionChart"></canvas>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <button onclick="updateAdoptionChart([200, 100, 50])"
+                                    class="bg-sky-700 text-white px-4 py-2 rounded-full text-sm hover:bg-sky-500 transition">Early Stage</button>
+                                <button onclick="updateAdoptionChart([300, 150, 100])"
+                                    class="bg-purple-700 text-white px-4 py-2 rounded-full text-sm hover:bg-purple-500 transition">Current</button>
+                                <button onclick="randomizeAdoptionChart()"
+                                    class="bg-green-700 text-white px-4 py-2 rounded-full text-sm hover:bg-green-500 transition">Randomize</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 text-slate-400 text-sm">
+                        <strong>How to use this demo:</strong>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>Click the <span class="font-semibold text-sky-400">Show 2023 Data</span> or <span class="font-semibold text-purple-400">Show 2024 Data</span> buttons to switch between different simulated datasets.</li>
+                            <li>Click <span class="font-semibold text-green-400">Randomize</span> to generate new random data for the charts.</li>
+                            <li>Hover over the chart points or segments to see detailed tooltips.</li>
+                            <li>Click <span class="inline-block w-12 h-4 bg-sky-400 border border-white"></span>  to filter the data.</li>
+                        </ul>
+                    </div>
+                </div>
+                <script>
+                    // Chart.js chart references
+                    let engagementChartInstance, adoptionChartInstance;
+
+                    // Engagement Chart
+                    function updateEngagementChart(data) {
+                        if (engagementChartInstance) {
+                            engagementChartInstance.data.datasets[0].data = data;
+                            engagementChartInstance.update();
+                        }
+                    }
+                    function randomizeEngagementChart() {
+                        if (engagementChartInstance) {
+                            engagementChartInstance.data.datasets[0].data = Array.from({length: 6}, () => Math.floor(Math.random() * 7000) + 500);
+                            engagementChartInstance.update();
+                        }
+                    }
+
+                    // Adoption Chart
+                    function updateAdoptionChart(data) {
+                        if (adoptionChartInstance) {
+                            adoptionChartInstance.data.datasets[0].data = data;
+                            adoptionChartInstance.update();
+                        }
+                    }
+                    function randomizeAdoptionChart() {
+                        if (adoptionChartInstance) {
+                            adoptionChartInstance.data.datasets[0].data = Array.from({length: 3}, () => Math.floor(Math.random() * 400) + 50);
+                            adoptionChartInstance.update();
+                        }
+                    }
+
+                    // Wait for DOMContentLoaded and Chart.js to be available
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Engagement Chart
+                        const engagementCtx = document.getElementById('engagementChart');
+                        if (engagementCtx) {
+                            engagementChartInstance = new Chart(engagementCtx, {
+                                type: 'line',
+                                data: {
+                                    labels: ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025', 'Q2 2025'],
+                                    datasets: [{
+                                        label: 'Active Users',
+                                        data: [1200, 1900, 3000, 5000, 4200, 6500],
+                                        borderColor: '#38bdf8',
+                                        backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                                        fill: true,
+                                        tension: 0.4
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    plugins: { legend: { labels: { color: '#94a3b8' } } },
+                                    scales: {
+                                        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+                                        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                                    }
+                                }
+                            });
+                        }
+
+                        // Adoption Chart
+                        const adoptionCtx = document.getElementById('adoptionChart');
+                        if (adoptionCtx) {
+                            adoptionChartInstance = new Chart(adoptionCtx, {
+                                type: 'doughnut',
+                                data: {
+                                    labels: ['Feature A', 'Feature B', 'Feature C'],
+                                    datasets: [{
+                                        label: 'Adoption',
+                                        data: [300, 150, 100],
+                                        backgroundColor: ['#38bdf8', '#a78bfa', '#34d399'],
+                                        hoverOffset: 4
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    plugins: { legend: { position: 'top', labels: { color: '#94a3b8' } } }
+                                }
+                            });
+                        }
+                    });
+                </script>
+            </section>
+
+            <!-- Experience Section with standout, vibrant Career Trajectory heading -->
+            <section id="experience" class="py-20 md:py-32">
+                <h2 class="text-5xl md:text-6xl font-extrabold mb-16 text-center gradient-text drop-shadow-2xl tracking-tight reveal flex flex-col items-center gap-4">
+                    <span class="inline-flex items-center gap-3">
+                        <svg class="w-12 h-12 text-sky-400 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 12V4" />
+                        </svg>
+                        <span class="uppercase tracking-widest">Career Trajectory</span>
+                    </span>
+                    <span class="block text-2xl md:text-3xl font-bold text-purple-300 animate-pulse">
+                        My Professional Journey 🚀
+                    </span>
+                </h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="relative">
+                        <!-- Vertical line -->
+                        <div class="absolute left-4 top-0 h-full w-0.5 bg-slate-700"></div>
+
+                        <!-- Timeline Item 1 -->
+                        <div class="relative pl-12 mb-12 reveal">
+                            <div
+                                class="absolute left-0 top-1.5 w-8 h-8 bg-gradient-to-br from-sky-400 via-purple-400 to-pink-400 rounded-full border-4 border-slate-800 shadow-lg">
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-100">Data Analyst Intern</h3>
+                            <p class="text-sky-400 mb-2">Pennyu Group | Aug - Dec 2024</p>
+                            <ul class="custom-list text-slate-400">
+                                <li>Conducted comprehensive analysis of over 14,000+ rows and 89 columns of operational
+                                    and transactional data from Pennyu's Shopee platform. Derived insights on customer
+                                    behavior patterns, sales performance, and advertising effectiveness, which directly
+                                    influenced business strategies.</li>
+                                <li>Proposed 9 actionable recommendations focusing on enhancing marketing campaigns,
+                                    boosting customer loyalty, and streamlining operational efficiency, scheduled for
+                                    implementation in 2025. These recommendations are projected to increase customer
+                                    retention and revenue by a significant margin.</li>
+                                <li>Designed and implemented 2 advanced customer segmentation models using statistical
+                                    analysis and machine learning techniques, enabling hyper-targeted marketing and
+                                    improved customer personalization strategies.</li>
+                                <li>Led the successful migration of key operational dashboards from Google Looker Studio
+                                    to Microsoft Power BI integrating 3+ data sources, enhancing data visualization
+                                    capabilities and reporting efficiency. This initiative streamlined data reporting
+                                    processes across departments.</li>
+                                <li>Generated 8 new datasets using DAX and Power Query, previously buried in raw
+                                    datasets. Automating data processing workflows and uncovering critical insights.
+                                </li>
+                                <li>Identified inefficiencies in data workflows and implemented solutions that reduced
+                                    data processing time by 30.11%, enabling quicker decision-making.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Timeline Item 2 -->
+                        <div class="relative pl-12 mb-12 reveal">
+                            <div
+                                class="absolute left-0 top-1.5 w-8 h-8 bg-gradient-to-br from-sky-400 via-purple-400 to-pink-400 rounded-full border-4 border-slate-800 shadow-lg">
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-100">Data Analyst Apprentice</h3>
+                            <p class="text-sky-400 mb-2">PT Zona Edukasi Nusantara (Zenius Education) | Aug - Dec 2023
+                            </p>
+                            <ul class="custom-list text-slate-400">
+                                <li>Created and maintained Looker Studio dashboards that provided key metrics to
+                                    stakeholders,
+                                    saving 10+ hours of manual reporting weekly.</li>
+                                <li>Utilized Python on Google Colab to clean and process over 15+ million data points
+                                    from 9+ real-life datasets</li>
+                                <li>Coordinated with 3 cross-functional teams to ensure seamless integration of data
+                                    sources, enhancing reporting accuracy by 10%</li>
+                                <li>Collaborated with a team of 4 to create a powerful dashboard via Google's Looker
+                                    Studio.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-20 md:py-32 text-center">
+                <h2 class="text-3xl font-bold text-slate-100 mb-4 reveal">
+                    Let's Build the Future of Data.
+                </h2>
+                <p class="text-slate-400 mb-10 max-w-2xl mx-auto reveal">
+                    I'm always open to new opportunities and collaborations. If you have a project in mind or believe
+                    I'd be a great fit for your team, I'd love to hear from you.
+                </p>
+                <div class="reveal flex justify-center space-x-6">
+                    <!-- Email Button -->
+                    <a href="mailto:jnanamaitriya@gmail.com"
+                        class="flex items-center bg-sky-500 text-white font-bold py-4 px-8 rounded-full text-xl hover:bg-sky-600 transition-all duration-300 transform hover:scale-105">
+                        <!-- Email Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 8V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2z" />
+                        </svg>
+                        Email
+                    </a>
+
+                    <!-- WhatsApp Button -->
+                    <a href="https://wa.me/6281393405010" target="_blank"
+                        class="flex items-center bg-green-500 text-white font-bold py-3 px-6 rounded-full text-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105">
+                        <!-- WhatsApp Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M20.52 3.48A11.94 11.94 0 0012 0C5.373 0 0 5.373 0 12a11.945 11.945 0 001.639 6.032L0 24l6.184-1.617A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.248-6.208-3.48-8.52zM12 22c-1.926 0-3.798-.508-5.425-1.47l-.388-.227-3.67.96.98-3.646-.24-.388A9.98 9.98 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.297-7.297c-.297-.148-1.758-.868-2.03-.969s-.47-.148-.668.148-.768.969-.942 1.168-.348.223-.645.074a8.18 8.18 0 01-2.414-1.486 9.14 9.14 0 01-1.688-2.086c-.178-.307-.019-.473.13-.62.133-.132.297-.347.446-.52.148-.174.198-.297.297-.495.099-.198.05-.371-.025-.52-.074-.148-.668-1.612-.916-2.207-.242-.579-.488-.5-.668-.51l-.57-.01a1.17 1.17 0 00-.868.408c-.297.297-1.131 1.106-1.131 2.695s1.158 3.124 1.319 3.343c.165.223 2.278 3.478 5.521 4.875.773.333 1.375.531 1.844.68.774.247 1.48.212 2.037.129.622-.097 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.413-.074-.123-.272-.198-.57-.346z" />
+                        </svg>
+                        WhatsApp
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center py-8">
+            <div class="flex justify-center items-center space-x-6 mb-4">
+                <!-- GitHub Icon & Link -->
+                <a href="https://github.com/jeevallucas" target="_blank"
+                    class="flex items-center text-slate-500 hover:text-sky-400 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.495.997.108-.775.418-1.305.76-1.605-2.665-.303-5.467-1.332-5.467-5.932 0-1.31.47-2.38 1.235-3.22-.125-.303-.535-1.523.115-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.655 1.653.245 2.873.12 3.176.77.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.81 1.102.81 2.222 0 1.605-.015 2.897-.015 3.292 0 .32.21.695.825.575C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                </a>
+
+                <!-- LinkedIn Icon & Link -->
+                <a href="https://www.linkedin.com/in/jeevallucas-gautama" target="_blank"
+                    class="flex items-center text-slate-500 hover:text-sky-400 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966 0-1.75-.794-1.75-1.75s.784-1.75 1.75-1.75 1.75.794 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.3h-3v-5.6c0-1.337-.023-3.059-1.865-3.059-1.868 0-2.155 1.46-2.155 2.968v5.691h-3v-10h2.881v1.367h.041c.401-.757 1.379-1.555 2.838-1.555 3.036 0 3.6 2 3.6 4.59v5.598z" />
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+            <p class="text-slate-600">© 2025 Jeevallucas Gautama. Designed with passion and coded with precision.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // --- 1. Three.js Interactive Background ---
+            // This creates the complex, moving particle network in the background.
+            let scene, camera, renderer, particles, mouseX = 0, mouseY = 0;
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            function initThree() {
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+                camera.position.z = 1000;
+
+                const material = new THREE.PointsMaterial({
+                    color: 0x38bdf8, // sky-400
+                    size: 2,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const geometry = new THREE.BufferGeometry();
+                const vertices = [];
+                const numParticles = 5000;
+
+                for (let i = 0; i < numParticles; i++) {
+                    const x = Math.random() * 2000 - 1000;
+                    const y = Math.random() * 2000 - 1000;
+                    const z = Math.random() * 2000 - 1000;
+                    vertices.push(x, y, z);
+                }
+
+                geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+                particles = new THREE.Points(geometry, material);
+                scene.add(particles);
+
+                renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+
+                document.addEventListener('mousemove', onDocumentMouseMove, false);
+                window.addEventListener('resize', onWindowResize, false);
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function onDocumentMouseMove(event) {
+                mouseX = event.clientX - windowHalfX;
+                mouseY = event.clientY - windowHalfY;
+            }
+
+            function animateThree() {
+                requestAnimationFrame(animateThree);
+                const time = Date.now() * 0.00005;
+                camera.position.x += (mouseX - camera.position.x) * 0.05;
+                camera.position.y += (-mouseY - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+                particles.rotation.x = time * 0.2;
+                particles.rotation.y = time * 0.5;
+                renderer.render(scene, camera);
+            }
+
+            initThree();
+            animateThree();
+
+            // --- 2. Scroll-Triggered Animations ---
+            // This uses the Intersection Observer API for high-performance animations.
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optional: unobserve after revealing to save resources
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // --- 3. Chart.js Interactive Sandbox ---
+            // This creates the animated, professional-looking charts.
+            const engagementCtx = document.getElementById('engagementChart');
+            if (engagementCtx) {
+                new Chart(engagementCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025', 'Q2 2025'],
+                        datasets: [{
+                            label: 'Active Users',
+                            data: [1200, 1900, 3000, 5000, 4200, 6500],
+                            borderColor: '#38bdf8',
+                            backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { labels: { color: '#94a3b8' } } },
+                        scales: {
+                            y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+                            x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                        }
+                    }
+                });
+            }
+
+            const adoptionCtx = document.getElementById('adoptionChart');
+            if (adoptionCtx) {
+                new Chart(adoptionCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Feature A', 'Feature B', 'Feature C'],
+                        datasets: [{
+                            label: 'Adoption',
+                            data: [300, 150, 100],
+                            backgroundColor: ['#38bdf8', '#a78bfa', '#34d399'],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { position: 'top', labels: { color: '#94a3b8' } } }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
