@@ -479,7 +479,7 @@
                     </div>
 
                     <!-- PDF Modal Overlay for Project 2 -->
-                    <div id="pdfModal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+                    <div id="pdfModal2" class="fixed inset-0 z-50 hidden flex items-center justify-center">
                         <div class="absolute inset-0 bg-black bg-opacity-70" onclick="closePdfModal()"></div>
                         <div
                             class="relative bg-slate-900 rounded-xl shadow-2xl max-w-3xl w-full mx-4 flex flex-col items-end">
@@ -491,7 +491,7 @@
                     </div>
 
                     <!-- PDF Modal Overlay for Project 3 -->
-                    <div id="pdfModal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+                    <div id="pdfModal3" class="fixed inset-0 z-50 hidden flex items-center justify-center">
                         <div class="absolute inset-0 bg-black bg-opacity-70" onclick="closePdfModal()"></div>
                         <div
                             class="relative bg-slate-900 rounded-xl shadow-2xl max-w-3xl w-full mx-4 flex flex-col items-end">
@@ -518,7 +518,7 @@
                         }
 
                         // PDF Modal logic for Project 2
-                        function openPdfModal(e) {
+                        function openPdfModal2(e) {
                             e.stopPropagation();
                             e.preventDefault();
                             document.getElementById('pdfModal').classList.remove('hidden');
@@ -526,13 +526,13 @@
                             document.getElementById('pdfFrame').src = "Sentiment Analysis of DANA using IndoBERT.pdf#page=1";
                         }
 
-                        function closePdfModal() {
+                        function closePdfModal2() {
                             document.getElementById('pdfModal').classList.add('hidden');
                             document.body.classList.remove('overflow-hidden');
                         }
 
                         // PDF Modal logic for Project 3
-                        function openPdfModal(e) {
+                        function openPdfModal3(e) {
                             e.stopPropagation();
                             e.preventDefault();
                             document.getElementById('pdfModal').classList.remove('hidden');
@@ -540,7 +540,7 @@
                             document.getElementById('pdfFrame').src = "Climate Risk Analysis.pdf#page=1";
                         }
 
-                        function closePdfModal() {
+                        function closePdfModal3() {
                             document.getElementById('pdfModal').classList.add('hidden');
                             document.body.classList.remove('overflow-hidden');
                         }
@@ -567,7 +567,7 @@
                                 <p class="text-slate-400 mb-4 font-bold hover:text-green-200 transition">
                                     🔗 Click the card to interact with the dashboard.
                                 </p>
-                                <button onclick="openPdfModal(event)"
+                                <button onclick="openPdfModal3(event)"
                                     class="inline-block bg-green-900/70 text-green-300 text-xs font-bold px-3 py-1 rounded-full hover:underline hover:text-green-200 transition">
                                     🔗 Click here to directly view my Full Analysis
                                 </button>
